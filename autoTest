@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "running testing script"
+for i in {10..100..10}
+  do 
+    ./test_Driver_optimized  $i
+ done
