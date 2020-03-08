@@ -39,7 +39,7 @@ test_mmult_optimized:	test_mmult.c mmult.c mat.c
 	gcc -O3 test_mmult.c mmult.c mat.c -lm -o test_mmult_optimized
 	
 test_Driver_optimized:	test_mmult.c mmult.c mat.c
-	gcc -O3 MatrixTestDriver.c mmult.c mat.c -o test_Driver_optimized
+	gcc -O3 -g MatrixTestDriver.c mmult.c mat.c -o test_Driver_optimized
 
 clean:
 	rm -f *.o
