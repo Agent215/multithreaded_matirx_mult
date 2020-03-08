@@ -38,13 +38,13 @@ int main(int argc, char** argv) {
 	/* printf("Creating matrix 'b' of size %d x %d\n", size, size); */
 	double* b = gen_matrix(size, size);
 	/* print_matrix(b, size, size); */
+	double *c = malloc(size * size * sizeof(double));
+	c = gen_matrix(size, size);
 	
 	
 
 	/* printf("Multiplying matrix 'a' and 'b'\n"); */
 	start = clock();
-	double *c = malloc(size * size * sizeof(double));
-	c = gen_matrix(size, size);
 	int success_1 = mmult(c, a, size, size, b, size, size);
 	end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
