@@ -2,6 +2,7 @@ set terminal png size 800,600
 set output 'autoTestGraph.png'
 
 # Set keys (which are labels)
+set key left top
 set xlabel 'Matrix size'
 set ylabel 'Time (sec)'
 set title 'Matrix Multiplication Speed Comparison'
