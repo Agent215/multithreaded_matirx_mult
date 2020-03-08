@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "running testing script"
+
 for i in {100..1000..100}
   do 
-    ./test_Driver_optimized  $i
+    ./test_Driver_optimized  $i >>log.csv
  done
