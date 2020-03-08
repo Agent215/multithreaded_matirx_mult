@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 		uses timespec structs. Not sure which one is better
 	*/
 	clock_t start, end;
-    double cpu_time_used;
+    double cpu_time_used, cpu_time_used_vectorized;
     
 	
 	if(argc < 2) {
@@ -48,7 +48,6 @@ int main(int argc, char** argv) {
 	int success_1 = mmult(c, a, size, size, b, size, size);
 	end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("%i,%lf\n",size, cpu_time_used); 
 	
 	/* print_matrix(c, size, size); */
 	
@@ -56,8 +55,8 @@ int main(int argc, char** argv) {
 	start = clock();
 	int success_2 = mmult_vectorized(c, a, size, size, b, size, size);
 	end = clock();
-	cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("%i,%lf\n",size,cpu_time_used); 
+	cpu_time_used_vectorized = ((double) (end - start)) / CLOCKS_PER_SEC;
+	printf("%i %lf %lf\n",size, cpu_time_used, cpu_time_used_vectorized); 
 	
 	
 
