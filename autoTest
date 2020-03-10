@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "running testing script"
+
+#remove old logs everytime we run
+rm log.txt log2.txt log3.txt
+
+for i in {200..2000..200}
+  do 
+    ./test_Driver_optimized  $i >>log.txt
+	  ./test_Driver $i >> log2.txt
+    ./mmult_omp_timing $i >> log3.txt
+ done
+
+if [ "$1" = g ]
+then
+   echo "plotting results"
+   gnuplot graph.gnu
+fi

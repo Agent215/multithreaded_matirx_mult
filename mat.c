@@ -49,7 +49,11 @@ int compare_matrices(double *a, double *b, int nRows, int nCols) {
 			return 0;
 		}
 	}
-	puts("Matrices are the same");
+
+	/* 
+    only print when matrices are not the same, for clean tabular data
+    puts("Matrices are the same");
+    */
     return 1;
 }
 
