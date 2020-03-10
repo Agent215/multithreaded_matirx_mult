@@ -14,6 +14,9 @@ int main(int argc, char* argv[]) {
     struct timespec start;
     struct timespec end;
     struct timespec res;
+    clock_t begin, after;
+
+    double cpu_time_used;
     double *a, *b, *c1, *c2;
     int n;
     double times[2];
@@ -29,10 +32,13 @@ int main(int argc, char* argv[]) {
         times[0] = deltaTime(&start, &end);
         printf("%d %f", n, times[0]);
         clock_gettime(CLOCK_REALTIME, &start);
+        begin = clock();
         mmult_omp(c2, a, n, n, b, n, n);
+        after = clock();
+        cpu_time_used = ((double) (after - begin)) / CLOCKS_PER_SEC;
         clock_gettime(CLOCK_REALTIME, &end);
         times[1] = deltaTime(&start, &end);
-        printf(" %f", times[1]);
+        printf(" %f", cpu_time_used);
         printf("\n");
         compare_matrices(c1, c2, n, n);
     } else {
