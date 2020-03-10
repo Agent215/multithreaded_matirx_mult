@@ -7,7 +7,7 @@ Parallel programing is a methodology used in software design that involves split
 	* [SIMD](#SIMD)
 	* [OpenMP](#OpenMP)
 	* [MPI](#MPI)
-	* [Graphs](#MGraphs)
+	* [Graphs](#Graphs)
 * [Our Team](#Our-Team)
 
 ## Concepts
