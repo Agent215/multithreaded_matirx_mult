@@ -132,3 +132,7 @@ double deltaTime(struct timespec *start, struct timespec *end) {
     double delta = (end->tv_sec - start->tv_sec) + (end->tv_nsec - start->tv_nsec) / 1e9;
     return delta;
 }
+
+int rowColToPosition(int row, int col, int nCols) {
+    return row * nCols + col;
+}

@@ -18,4 +18,6 @@ int mmult_omp(double *c,
 		      double *a, int aRows, int aCols,
 		      double *b, int bRows, int bCols);
 
+int rowColToPosition(int row, int col, int nCols);
+
 #endif
