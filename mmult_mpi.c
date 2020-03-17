@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
                 }
             } 
             endtime = MPI_Wtime();
-            printf("Time taken: %f\n",(endtime - starttime));
+            printf("%i %f\n",nrows,(endtime - starttime));
             //print_matrix(c, nrows, 1);
         } else {
             // Slave Code goes here
