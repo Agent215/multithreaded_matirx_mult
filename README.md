@@ -31,8 +31,11 @@ MPI stands for Message Passing Interface which is a portable message-passing sta
 
 ## Graphs
 
+### Optimization, OMP & Matrix Size Comparison 
 ![regular matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/raw/test/autoTestGraph.png)
 
+### MPI Node Size & Matrix Size Comparison
+![mpi matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/blob/week2Dev/MPI.png)
 ## Tasks
 
 **Mandatory Tasks:**
@@ -79,6 +82,7 @@ Members:
 * Created initial automation of graph production with Gnuplot
 * Created the MPI implementation
 * Assisted other teammates with debugging
+* Converted mmult_mpi_omp to read in matrix files
 
 #### Abraham Schultz
 * Created the trello board
