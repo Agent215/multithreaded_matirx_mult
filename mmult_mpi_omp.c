@@ -40,6 +40,11 @@ int main(int argc, char* argv[])
         get_dim_from_file(argv[2], &brows, &bcols);
         nrows = arows;
         ncols = bcols;
+	// Make sure matrices compatible
+	if (acols != brows) {
+	    printf("Matrices provided are not compatible");
+	    return 1;
+	}
 
         buffer = (double*)malloc(sizeof(double) * ncols);
         master = 0;
