@@ -48,17 +48,18 @@ int main(int argc, char* argv[])
             cc = (double *)malloc(sizeof(double) * nrows * ncols);
             starttime = MPI_Wtime();
             numsent = 0;
-            MPI_Bcast(&bb, ncols*ncols, MPI_DOUBLE, master, MPI_COMM_WORLD);
+            MPI_Bcast(bb, ncols*ncols, MPI_DOUBLE, master, MPI_COMM_WORLD);
             for (i = 0; i < min(numprocs-1, nrows); i++) {
                 for (j = 0; j < ncols; j++) {
                     buffer[j] = aa[i * ncols + j];
                 }  
-                MPI_Send(&buffer, ncols, MPI_DOUBLE, i+1, i+1, MPI_COMM_WORLD);
+                MPI_Send(buffer, ncols, MPI_DOUBLE, i+1, i+1, MPI_COMM_WORLD);
                 numsent++;
             }
             // Needs to modified from matrix times vector to matrix times matrix 
+            ans = (double*)malloc(sizeof(double) * ncols);
             for (i = 0; i < nrows; i++) {
-                MPI_Recv(&ans, ncols, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, 
+                MPI_Recv(ans, ncols, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, 
                     MPI_COMM_WORLD, &status);
                 sender = status.MPI_SOURCE;
                 anstype = status.MPI_TAG;
@@ -70,7 +71,7 @@ int main(int argc, char* argv[])
                     for (j = 0; j < ncols; j++) {
                         buffer[j] = aa[numsent*ncols + j];
                     }  
-                    MPI_Send(&buffer, ncols, MPI_DOUBLE, sender, numsent+1, 
+                    MPI_Send(buffer, ncols, MPI_DOUBLE, sender, numsent+1, 
                         MPI_COMM_WORLD);
                     numsent++;
                 } else {
@@ -82,10 +83,11 @@ int main(int argc, char* argv[])
             //print_matrix(c, nrows, 1);
         } else {
             // Slave Code goes here
-            MPI_Bcast(&bb, ncols*ncols, MPI_DOUBLE, master, MPI_COMM_WORLD);
+            bb = (double *)malloc(sizeof(double) * nrows * ncols);
+            MPI_Bcast(bb, ncols*ncols, MPI_DOUBLE, master, MPI_COMM_WORLD);
             if (myid <= nrows) {
                 while(1) {
-                    MPI_Recv(&buffer, ncols, MPI_DOUBLE, master, MPI_ANY_TAG, 
+                    MPI_Recv(buffer, ncols, MPI_DOUBLE, master, MPI_ANY_TAG, 
                         MPI_COMM_WORLD, &status);
                     if (status.MPI_TAG == 0) break;
                     row = status.MPI_TAG;
@@ -96,7 +98,7 @@ int main(int argc, char* argv[])
                         for (j = 0; j < ncols; j++)
 			                ans[j] += buffer[k] * bb[k * ncols + j];
                     // Send row back for assembly
-                    MPI_Send(&ans, ncols, MPI_DOUBLE, master, row, MPI_COMM_WORLD);
+                    MPI_Send(ans, ncols, MPI_DOUBLE, master, row, MPI_COMM_WORLD);
                 }
             }
         }
