@@ -97,6 +97,6 @@ Members:
 
 ## Security & Review
 ### Branch Security
-Brahm locked the master branch on the first day of the project as described in GitHW2 Lab2. We 
+Brahm locked the master branch on the first day of the project as described in GitHW2 Lab2. All other branchs had no locks to facilitate rapid collaborative development. 
 ### Review Process
 Every time enough work was completed to satisfy weekly review requirements, the last team member to commit changes would create a pull request to master and assign the other members to review all files. Then the reviewers would conduct their review, ask questions, and approve when ready. We would also review each others work during the development process to help with bugs.
