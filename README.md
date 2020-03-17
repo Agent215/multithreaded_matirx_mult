@@ -1,4 +1,3 @@
-
 # Lab 6: Parallel Programming
 Parallel programing is a methodology used in software design that involves splitting up the required work among different cores, processors, or even machines. The end goal is to allow for faster processing of the data to improve performance of applications. There are many different ways to achieve this goal, in this lab we are analyzing a few of the existing solutions including [SIMD](#SIMD), [OpenMP](#OpenMP), and [MPI](#MPI).
 
@@ -12,6 +11,9 @@ Parallel programing is a methodology used in software design that involves split
 * [Project Lifecycle](#Project-Lifecycle)
 * [Our Team](#Our-Team)
 	* [Contributions](#Contributions)
+	* [Security & Review](#Security-&-Review)
+		* [Branch Security](#Branch-Security)
+		* [Review Process](#Review-Process)
 
 ## Concepts
 ### SIMD
@@ -93,9 +95,8 @@ Members:
 * Created Testing Driver program for running mmult and mmult_vectorized functions
 
 
-### Security & Review
-### Security
-Brahm locked the master branch on the first day of the project as described in GitHW2 Lab2. 
-
-### Review
-Every time enough work was completed to satisfy a weeks requirements, the last team member to commit changes would create a pull request to master and assign the other members to review all files. Then the reviewers would conduct their review, ask questions, and approve when ready. We would also review each others work during the development process to help with bugs.
+## Security & Review
+### Branch Security
+Brahm locked the master branch on the first day of the project as described in GitHW2 Lab2. We 
+### Review Process
+Every time enough work was completed to satisfy weekly review requirements, the last team member to commit changes would create a pull request to master and assign the other members to review all files. Then the reviewers would conduct their review, ask questions, and approve when ready. We would also review each others work during the development process to help with bugs.
