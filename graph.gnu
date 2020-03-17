@@ -19,9 +19,12 @@ set key left top
 set xlabel 'Matrix size'
 set ylabel 'Time (sec)'
 set title 'Matrix Multiplication Speed Comparison'
-plot "mpi_log5.txt" using 1:2 title '7 nodes MPI' with linespoint, \
-"mpi_log6.txt" using 1:2 title '10 nodes MPI' with linespoint, \
-"mpi_log7.txt" using 1:2 title '20 nodes MPI' with linespoint
+plot \
+"mpi_log2.txt" using 1:2 title '2 nodes MPI' with linespoint, \
+"mpi_log4.txt" using 1:2 title '4 nodes MPI' with linespoint, \
+"mpi_log6.txt" using 1:2 title '6 nodes MPI' with linespoint, \
+"mpi_log10.txt" using 1:2 title '10 nodes MPI' with linespoint, \
+"mpi_log20.txt" using 1:2 title '20 nodes MPI' with linespoint
 
 
 

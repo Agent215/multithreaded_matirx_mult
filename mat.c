@@ -104,6 +104,36 @@ double *read_matrix_from_file(const char *path) {
 
     return matrix;
 }
+/**
+ * Assign row and col values by pointer
+ * @param path : file path containing matrix, where first line is row and col #s
+ * @param r : row number
+ * @param c : col number
+ */
+void get_dim_from_file(const char *path, int *r, int *c) {
+    FILE *fp = fopen(path, "r");
+    if(fp == NULL) {
+        fprintf(stderr, "Unable to open file at path '%s'\n", path);
+        exit(EXIT_FAILURE);
+    }
+
+    size_t buflen = 255;
+    char buf[buflen];
+    int n, m;
+
+    // Read size of matrix
+    if(!fgets(buf, buflen, fp)) {
+        fprintf(stderr, "Unable to read file at path '%s'\n", path);
+        exit(EXIT_FAILURE);
+    } else if(sscanf(buf, "%d %d", &n, &m) != 2) {
+        fprintf(stderr, "Unable to parse first line, expect '%%d %%d'.\n");
+        exit(EXIT_FAILURE);
+    }
+    *r = n;
+    *c = m;
+    fclose(fp);
+}
+
 
 /**
  * Prints the matrix for pretty viewing.
