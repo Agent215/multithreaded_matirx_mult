@@ -31,6 +31,17 @@ By: *Evan Fiordeliso*
 
 MPI stands for Message Passing Interface which is a portable message-passing standard designed by a group of researchers. MPI is another method of implementing parallel computing, but what makes this method different is how it divides the work. In the other two forms of parallel computing discussed, all of the work is completed on the same machine; however, with this scheme, the work is divided among multiple machines communicating with a controlling machine. There is also the ability to run multiple processes on each machine allowing you to take advantage of the multiple cores that exist on the machines. One possible downside is that messages must be passed over the network and depending on the size of the messages it could cause some bottleneck. While it may be simple to implement, it is not as simple as the other two methods but comes along with great performance benefits.
 
+## Solution
+
+### Architecture
+We used a bash script to automate running mmult on different array sizes and optimization parameters.
+The script autoTest used for loops to automate supplying parameters to mmult variations and log the results.
+The script accepts a parameter `-g` which enables graphing of the results. The script runs graph.gnu when this parameter is supplied.
+
+### Algorithm Variations
+When testing optimization, vectorization, and omp on the matrix multiplication algorithm, we tested non-vectorized and vectorized mmult with and without optimization. We also tried OMP by itself. 
+When testing the effects of different node sizes on the matrix multiplication algorithm, we tested node sizes of 2, 4, 6, 10, and 20.
+
 ## Graphs
 
 ### Vectorization, Optimization, OMP & Matrix Size Comparison 
@@ -94,9 +105,8 @@ Members:
 * Added MPI to the autoTest file and its output data to a seprate Gnuplot file
 * Created Testing Driver program for running mmult and mmult_vectorized functions
 
-
-## Security & Review
-### Branch Security
+### Security & Review
+#### Branch Security
 Brahm locked the master branch on the first day of the project as described in GitHW2 Lab2. All other branchs had no locks to facilitate rapid collaborative development. 
-### Review Process
+#### Review Process
 Every time enough work was completed to satisfy weekly review requirements, the last team member to commit changes would create a pull request to master and assign the other members to review all files. Then the reviewers would conduct their review, ask questions, and approve when ready. We would also review each others work during the development process to help with bugs.
