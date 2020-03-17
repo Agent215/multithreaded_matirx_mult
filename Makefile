@@ -1,6 +1,9 @@
-PGMS=mmult_omp_timing matrix_times_vector hello test_mmult test_mmult_optimized mxv_omp_mpi mmult_mpi_omp test_Driver_optimized test_Driver
+PGMS= mmult_mpi mmult_omp_timing matrix_times_vector hello test_mmult test_mmult_optimized mxv_omp_mpi mmult_mpi_omp test_Driver_optimized test_Driver
 
 all:	${PGMS}
+
+mmult_mpi:	mmult_mpi.c mat.c
+	mpicc -O3 -o mmult_mpi mmult_mpi.c mat.c
 
 mmult_mpi_omp:		mmult.o mmult_mpi_omp.o mat.c
 	mpicc -o mmult_mpi_omp -fopenmp -O3 mmult.o mmult_mpi_omp.o mat.c

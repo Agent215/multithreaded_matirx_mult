@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#remove old logs everytime we run
+rm log.txt log2.txt log3.txt mpi_log.txt
+
+echo "running non-optimized, optimized, and omp tests"
+for i in {10..300..10} # 200...1000.200
+ do
+   ./test_Driver_optimized $i  >> log.txt
+   ./test_Driver $i            >> log2.txt
+   ./mmult_omp_timing $i       >> log3.txt
+   # Show percent completed. floating point calcs done with bc
+   percentDone=$(bc <<< "scale=2;($i / 300) * 100")
+   echo -ne "[" $percentDone "% ] completed\r"
+ done
+echo "completed non-optimized, optimized, and omp tests"
+
+echo "running mpi tests"
+for i in {1..20..1}
+ do
+    mpiexec -f ~/hosts -n $i ./mmult_mpi 5 a.txt b.txt  >> mpi_log.txt
+    # Show percent completed
+    #percentDone=$(bc <<< "scale=2;($i / 13) * 100")
+    #echo -ne "[" $percentDone "% ] completed\r"
+ done
+echo "completed mpi tests"
+
+if [ "$3" = g ]
+then
+   echo "plotting results"
+   gnuplot graph.gnu
+fi

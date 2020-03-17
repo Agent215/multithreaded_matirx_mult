@@ -13,7 +13,7 @@
 
 int main(int argc, char* argv[])
 {
-    int nrows, ncols, arows, acols, brows, bcols;
+    int nrows, ncols;
 
     double *aa, *bb, *cc;
     double *buffer, *ans;
@@ -36,30 +36,23 @@ int main(int argc, char* argv[])
     MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
     if (argc > 1) {
-        get_dim_from_file(argv[1], &arows, &acols);
-        get_dim_from_file(argv[2], &brows, &bcols);
-        nrows = arows;
-        ncols = bcols;
-	// Make sure matrices compatible
-	if (acols != brows) {
-	    printf("Matrices provided are not compatible");
-	    return 1;
-	}
+        nrows = atoi(argv[1]);
+        ncols = nrows;
 
         buffer = (double*)malloc(sizeof(double) * ncols);
         master = 0;
         if (myid == master) {
             // Master Code goes here
-            aa = read_matrix_from_file(argv[1]);
-            bb = read_matrix_from_file(argv[2]);
+            aa = gen_matrix(nrows, ncols);
+            bb = gen_matrix(nrows, ncols);
             cc = (double *)malloc(sizeof(double) * nrows * ncols);
             starttime = MPI_Wtime();
             numsent = 0;
-            MPI_Bcast(bb, brows*bcols, MPI_DOUBLE, master, MPI_COMM_WORLD);
+            MPI_Bcast(bb, ncols*ncols, MPI_DOUBLE, master, MPI_COMM_WORLD);
             for (i = 0; i < min(numprocs-1, nrows); i++) {
                 for (j = 0; j < ncols; j++) {
                     buffer[j] = aa[i * ncols + j];
-                }
+                }  
                 MPI_Send(buffer, ncols, MPI_DOUBLE, i+1, i+1, MPI_COMM_WORLD);
                 numsent++;
             }
@@ -86,12 +79,12 @@ int main(int argc, char* argv[])
                 }
             } 
             endtime = MPI_Wtime();
-            //printf("%i %f\n",nrows,(endtime - starttime));
-            print_matrix(cc, nrows, ncols);
+            printf("%i %f\n",nrows,(endtime - starttime));
+            //print_matrix(c, nrows, 1);
         } else {
             // Slave Code goes here
             bb = (double *)malloc(sizeof(double) * nrows * ncols);
-            MPI_Bcast(bb, brows*bcols, MPI_DOUBLE, master, MPI_COMM_WORLD);
+            MPI_Bcast(bb, ncols*ncols, MPI_DOUBLE, master, MPI_COMM_WORLD);
             if (myid <= nrows) {
                 while(1) {
                     MPI_Recv(buffer, ncols, MPI_DOUBLE, master, MPI_ANY_TAG, 
@@ -99,7 +92,7 @@ int main(int argc, char* argv[])
                     if (status.MPI_TAG == 0) break;
                     row = status.MPI_TAG;
                     ans = (double*)malloc(sizeof(double) * ncols);
-		    for (j = 0; j < ncols; j++) // Indexing with just j here because its a 1 x n row
+		            for (j = 0; j < ncols; j++) // Indexing with just j here because its a 1 x n row
                         ans[j] = 0;
                     for (k = 0; k < ncols; k++)
                         for (j = 0; j < ncols; j++)
