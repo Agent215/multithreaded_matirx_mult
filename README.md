@@ -85,3 +85,4 @@ Members:
 * Assisted other teammates with debugging
 * Added OpenMP to the autoTest file and its output data to the Gnuplot file
 * Added MPI to the autoTest file and its output data to a seprate Gnuplot file
+* Created Testing Driver program for running mmult and mmult_vectorized functions
