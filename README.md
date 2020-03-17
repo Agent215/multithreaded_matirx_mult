@@ -31,11 +31,12 @@ MPI stands for Message Passing Interface which is a portable message-passing sta
 
 ## Graphs
 
-### Optimization, OMP & Matrix Size Comparison 
+### Vectorization, Optimization, OMP & Matrix Size Comparison 
 ![regular matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/raw/test/autoTestGraph.png)
 
 ### MPI Node Size & Matrix Size Comparison
 ![mpi matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/blob/week2Dev/MPI.png)
+
 ## Tasks
 
 **Mandatory Tasks:**
@@ -90,3 +91,11 @@ Members:
 * Added OpenMP to the autoTest file and its output data to the Gnuplot file
 * Added MPI to the autoTest file and its output data to a seprate Gnuplot file
 * Created Testing Driver program for running mmult and mmult_vectorized functions
+
+
+### Security & Review
+### Security
+Brahm locked the master branch on the first day of the project as described in GitHW2 Lab2. 
+
+### Review
+Every time enough work was completed to satisfy a weeks requirements, the last team member to commit changes would create a pull request to master and assign the other members to review all files. Then the reviewers would conduct their review, ask questions, and approve when ready. We would also review each others work during the development process to help with bugs.
