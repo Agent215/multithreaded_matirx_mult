@@ -7,8 +7,11 @@ Parallel programing is a methodology used in software design that involves split
 	* [SIMD](#SIMD)
 	* [OpenMP](#OpenMP)
 	* [MPI](#MPI)
-	* [Graphs](#Graphs)
+* [Graphs](#Graphs)
+* [Tasks](#Tasks)
+* [Project Lifecycle](#Project-Lifecycle)
 * [Our Team](#Our-Team)
+	* [Contributions](#Contributions)
 
 ## Concepts
 ### SIMD
@@ -30,6 +33,30 @@ MPI stands for Message Passing Interface which is a portable message-passing sta
 
 ![regular matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/raw/test/autoTestGraph.png)
 
+## Tasks
+
+**Mandatory Tasks:**
+* ✅ Automate running  matrix multiplication on different size matrix and generating data in tabular format for graph production.
+* ✅ Matrix multiplication in C  on Wolfgand cluster without SIMD and without parallelization
+* ✅ Matrix multiplication in C  on Wolfgand cluster with  SIMD (rewrite algo accordingly and try with and without -O3)
+* ✅ Matrix multiplication in C  on Wolfgand cluster with  OpenMP (easy, try mmult_omp_timing)  
+* ✅ Matrix multiplication in C  on Wolfgand cluster with MPI (Distribitued Memory) 
+* ✅ Produce graphs   
+* ✅ Read input matrix from two files as described in MPI and OpenMP on Wolfgand Cluster.docx Preview the document
+(section: main program).
+
+**Additional Tasks:**
+* Matrix multiplication in C  on Wolfgand cluster with both  OpenMP and MPI. 
+* ~~Matrix multiplication parallelization in C on your own computer (SIMT(gpu), OpenMP or MPI).~~
+* ~~Matrix multiplication parallelization in Java on your own computer (SIMD, SMP or other).~~
+* ✅ Automate the production of graph with  Gnuplot or other tools.
+
+## Project Lifecycle
+
+[Trello Board](https://trello.com/b/IOl6l6SS/matrix-mult-lab-6)
+
+We used the Trello Board to keep track of the tasks at hand and who the main lead on the specific task is. It definitely helped as I was creating this README file to be able to credit people with their contributions to the project. We also used it to write comments about our progress occasionally although most of our communication occurred over SMS. I've found that the usual cycle of write code, compile code, run code, then test code seemed to fit though testing the code was sometimes harder than other times. The hardest part to test for this project was the MPI implementation because trying to find where the issues arose  was often hard to find with vague error messages. For automating the testing of multiple size matricies and producing the graphs, we used a bash script that ran the program multiple times and piping the output into a file. Using gnuplot, we took the data from the output files to produce the graphs. To ensure validity we checked to make sure that one algorithm obtains the same output as another algorithm. Testing took up a lot of our time because we ran into bugs that were rather difficult to track down. Being that there wasn't too much code to write it didn't take too much time, a significantly less time than it took us to test the project.
+
 ## Our Team
 Name: *02-Fiordeliso-Shultz-Slipenchuk*
 
@@ -37,3 +64,24 @@ Members:
 * Evan Fiordeliso
 * Matthew Slipenchuk
 * Abraham Schultz
+
+### Contributions
+
+#### Evan Fiordeliso
+* Created and maintained the README file
+* Assisted other teammates with debugging
+* Created the vectorized matrix multiplication algorithm
+* Fixed timing calculation on the OpenMP implementation
+* Implemented storing the answer in output matrix for the MPI implementation
+
+#### Matthew Slipenchuk
+* Created script to automatically test and graph the diffent algorithms
+* Created initial automation of graph production with Gnuplot
+* Created the MPI implementation
+* Assisted other teammates with debugging
+
+#### Abraham Schultz
+* Created the trello board
+* Assisted other teammates with debugging
+* Added OpenMP to the autoTest file and its output data to the Gnuplot file
+* Added MPI to the autoTest file and its output data to a seprate Gnuplot file
