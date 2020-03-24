@@ -1,15 +1,21 @@
-PGMS= mmult_mpi mmult_omp_timing matrix_times_vector hello test_mmult test_mmult_optimized mxv_omp_mpi mmult_mpi_omp test_Driver_optimized test_Driver
+PGMS= mmult_mpi mmult_omp_timing matrix_times_vector hello test_mmult test_mmult_optimized mxv_omp_mpi mmult_mpi_omp_file mmult_mpi_omp test_Driver_optimized test_Driver
 
 all:	${PGMS}
 
 mmult_mpi:	mmult_mpi.c mat.c
 	mpicc -O3 -o mmult_mpi mmult_mpi.c mat.c
 
+mmult_mpi_omp_file:		mmult.o mmult_mpi_omp_file.o mat.c
+	mpicc -o mmult_mpi_omp_file -fopenmp -O3 mmult.o mmult_mpi_omp_file.o mat.c
+
 mmult_mpi_omp:		mmult.o mmult_mpi_omp.o mat.c
 	mpicc -o mmult_mpi_omp -fopenmp -O3 mmult.o mmult_mpi_omp.o mat.c
 
 mmult_mpi_omp.o:	mmult_mpi_omp.c
 	mpicc -c -fopenmp -O3 mmult_mpi_omp.c
+
+mmult_mpi_omp_file.o:	mmult_mpi_omp_file.c
+	mpicc -c -fopenmp -O3 mmult_mpi_omp_file.c
 
 mmult_omp_timing:	mmult.o mmult_omp.o mmult_omp_timing.o mat.c
 	gcc -o mmult -fopenmp -O3 mmult.o mmult_omp.o mmult_omp_timing.o mat.c -o mmult_omp_timing
@@ -46,7 +52,6 @@ test_Driver_optimized:	test_mmult.c mmult.c mat.c
 	
 test_Driver:	test_mmult.c mmult.c mat.c
 	gcc -g MatrixTestDriver.c mmult.c mat.c -o test_Driver	
-	
 
 clean:
 	rm -f *.o

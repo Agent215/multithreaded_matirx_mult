@@ -45,10 +45,10 @@ When testing the effects of different node sizes on the matrix multiplication al
 ## Graphs
 
 ### Vectorization, Optimization, OMP & Matrix Size Comparison 
-![regular matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/raw/test/autoTestGraph.png)
+![regular matrix multiplication](autoTestGraph.png)
 
 ### MPI Node Size & Matrix Size Comparison
-![mpi matrix multiplication](https://github.com/3296Spring2020/parallel-matrix-02-fiordeliso-schultz-slipenchuk/blob/week2Dev/MPI.png)
+![mpi matrix multiplication](MPI.png)
 
 ## Tasks
 

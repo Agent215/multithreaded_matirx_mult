@@ -3,7 +3,7 @@
 echo "running optimization and omp tests"
 
 #remove old logs everytime we run
-rm log.txt log2.txt log3.txt mpi_log.txt mpi_log2.txt mpi_log4.txt mpi_log6.txt mpi_log10.txt mpi_log20.txt mpi_log_result.txt
+rm -f log.txt log2.txt log3.txt mpi_log.txt mpi_omp_log.txt mpi_omp_file_log.txt mpi_log2.txt mpi_log4.txt mpi_log6.txt mpi_log10.txt mpi_log20.txt
 
 
 
@@ -13,6 +13,7 @@ for i in {200..1000..200}
    ./test_Driver            $i >> log2.txt
    ./mmult_omp_timing       $i >> log3.txt
    mpiexec -f ~/hosts -n 5  ./mmult_mpi $i >> mpi_log.txt
+   mpiexec -f ~/hosts -n 5  ./mmult_mpi_omp $i >> mpi_omp_log.txt
    # Show progress done. Calculating percent with float math using bc
    percentDone=$(bc <<< "scale=2; ($i / 1000) * 100")
    echo -ne "[" $percentDone " % ] completed\r"
@@ -33,7 +34,7 @@ echo  "running mpi tests"
  done
 
 echo "running mpi on input files"
-mpiexec -f ~/hosts -n 5 ./mmult_mpi_omp a.txt b.txt >> mpi_log_result.txt
+mpiexec -f ~/hosts -n 5 ./mmult_mpi_omp_file a.txt b.txt >> mpi_omp_file_log.txt
 
 if [ "$1" = "-g" ]
 then
