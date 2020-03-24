@@ -63,7 +63,7 @@ When testing the effects of different node sizes on the matrix multiplication al
 (section: main program).
 
 **Additional Tasks:**
-* Matrix multiplication in C  on Wolfgand cluster with both  OpenMP and MPI. 
+* ✅ Matrix multiplication in C  on Wolfgand cluster with both  OpenMP and MPI. 
 * ~~Matrix multiplication parallelization in C on your own computer (SIMT(gpu), OpenMP or MPI).~~
 * ~~Matrix multiplication parallelization in Java on your own computer (SIMD, SMP or other).~~
 * ✅ Automate the production of graph with  Gnuplot or other tools.
